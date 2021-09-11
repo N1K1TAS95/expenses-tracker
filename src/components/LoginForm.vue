@@ -1,6 +1,10 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
         <h1>Login</h1>
+        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert" v-if="error">
+            {{ error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         <div class="input-group mt-4">
             <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
         </div>
@@ -18,23 +22,26 @@
 
 <script>
 import {ref} from 'vue'
+import useLogin from '@/composables/useLogin'
 
 export default {
     name: 'LoginForm',
     emits: ['signup'],
     setup() {
+        const {error, login} = useLogin()
+
         const email = ref('')
         const password = ref('')
 
-        const handleSubmit = () => {
-            console.log(email.value)
-            console.log(password)
+        const handleSubmit = async () => {
+            await login(email.value, password.value)
         }
 
         return {
             email,
             password,
-            handleSubmit
+            handleSubmit,
+            error
         }
     }
 }
