@@ -29,8 +29,7 @@ import useSignup from '@/composables/useSignup'
 
 export default {
     name: 'SignupForm',
-    emits: ['login'],
-    setup() {
+    setup(props, context) {
         const {error, signup} = useSignup()
 
         const displayName = ref('')
@@ -39,6 +38,9 @@ export default {
 
         const handleSubmit = async () => {
             await signup(email.value, password.value, displayName.value)
+            if (!error) {
+                context.emit('signup')
+            }
         }
 
         return {
