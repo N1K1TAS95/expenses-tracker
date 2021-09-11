@@ -1,12 +1,9 @@
 <template>
-    <div class="container">
-        <h1>Welcome</h1>
-        <div v-if="showLogin">
-            <LoginForm @signup="showLogin = !showLogin" @login="enter"/>
-        </div>
-        <div v-else>
-            <SignupForm @login="showLogin = !showLogin" @signup="enter"/>
-        </div>
+    <div v-if="showLogin">
+        <LoginForm @signup="showLogin = !showLogin" @login="enter" />
+    </div>
+    <div v-else>
+        <SignupForm @login="showLogin = !showLogin" @signup="enter" />
     </div>
 </template>
 
