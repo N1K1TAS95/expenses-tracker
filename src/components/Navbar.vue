@@ -6,8 +6,8 @@
                 <ul class="navbar-nav my-auto">
                     <li class="nav-item">
                     </li>
-                    <li class="nav-item nav-link active">
-                        Username
+                    <li class="nav-item nav-link active" v-if="user">
+                        {{ user.displayName }}
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-outline-light" @click="handleClick">Log out</button>
@@ -22,6 +22,7 @@
 import useLogout from '@/composables/useLogout'
 import {useRouter} from 'vue-router'
 import {useToast} from 'vue-toastification'
+import getUser from '@/composables/getUser'
 
 export default {
     name: 'Navbar',
@@ -29,6 +30,7 @@ export default {
         const toast = useToast()
         const router = useRouter()
         const {error, logout} = useLogout()
+        const {user} = getUser()
         const handleClick = async () => {
             await logout()
             if (!error.value) {
@@ -36,7 +38,7 @@ export default {
                 await router.push({name: 'Welcome'})
             }
         }
-        return {error, handleClick}
+        return {error, handleClick, user}
     }
 }
 </script>
