@@ -10,7 +10,7 @@
                         Username
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-outline-light">Log out</button>
+                        <button class="btn btn-outline-light" @click="handleClick">Log out</button>
                     </li>
                 </ul>
             </div>
@@ -19,8 +19,23 @@
 </template>
 
 <script>
+import useLogout from '@/composables/useLogout'
+import {useRouter} from 'vue-router'
+
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    setup() {
+        const router = useRouter()
+        const {error, logout} = useLogout()
+        const handleClick = async () => {
+            await logout()
+            if (!error.value) {
+                console.log('Logged out')
+                await router.push({name: 'Welcome'})
+            }
+        }
+        return {error, handleClick}
+    }
 }
 </script>
 
