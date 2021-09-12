@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import {projectAuth} from '@/firebase/config'
 
 
 const toast_options = {
@@ -14,7 +15,13 @@ const toast_options = {
     hideProgressBar: true
 }
 
-createApp(App)
-    .use(router)
-    .use(Toast, toast_options)
-    .mount('#app')
+let app
+
+projectAuth.onAuthStateChanged(() => {
+    if (!app) {
+        app = createApp(App)
+            .use(router)
+            .use(Toast, toast_options)
+            .mount('#app')
+    }
+})

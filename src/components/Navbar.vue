@@ -35,7 +35,7 @@ export default {
             await logout()
             if (!error.value) {
                 toast.success('Successfully logged out!')
-                await router.push({name: 'Welcome'})
+                //await router.push({name: 'Welcome'})
             }
         }
         return {error, handleClick, user}
