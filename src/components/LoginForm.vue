@@ -1,11 +1,16 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
-        <h1>Login</h1>
+        <div class="text-center mb-4">
+            <img src="@/assets/money-bag.png" width="125" alt="">
+            <h4 class="mt-3">Login</h4>
+        </div>
         <div class="input-group mt-4">
             <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
         </div>
         <div class="input-group">
-            <input type="password" class="form-control" id="inputPassword" required v-model="password" placeholder="Password">
+            <input type="password" class="form-control" id="inputPassword" required v-model="password"
+                   placeholder="Password"
+            >
         </div>
         <div class="input-group d-grid gap-2">
             <button class="btn btn-lg btn-primary my-4" type="submit">Submit</button>
