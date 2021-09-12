@@ -1,10 +1,6 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
         <h1>Login</h1>
-        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert" v-if="error">
-            {{ error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <div class="input-group mt-4">
             <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
         </div>
@@ -23,10 +19,12 @@
 <script>
 import {ref} from 'vue'
 import useLogin from '@/composables/useLogin'
+import {useToast} from 'vue-toastification'
 
 export default {
     name: 'LoginForm',
     setup(props, context) {
+        const toast = useToast()
         const {error, login} = useLogin()
 
         const email = ref('')
@@ -36,6 +34,8 @@ export default {
             await login(email.value, password.value)
             if (!error.value) {
                 context.emit('login')
+            } else {
+                toast.error(error.value)
             }
         }
 

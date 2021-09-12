@@ -21,16 +21,18 @@
 <script>
 import useLogout from '@/composables/useLogout'
 import {useRouter} from 'vue-router'
+import {useToast} from 'vue-toastification'
 
 export default {
     name: 'Navbar',
     setup() {
+        const toast = useToast()
         const router = useRouter()
         const {error, logout} = useLogout()
         const handleClick = async () => {
             await logout()
             if (!error.value) {
-                console.log('Logged out')
+                toast.success('Successfully logged out!')
                 await router.push({name: 'Welcome'})
             }
         }

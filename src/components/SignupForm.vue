@@ -6,13 +6,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="input-group mt-4">
-            <input type="text" class="form-control" id="inputUsername" required v-model="displayName" placeholder="Display Name">
+            <input type="text" class="form-control" id="inputUsername" required v-model="displayName"
+                   placeholder="Display Name"
+            >
         </div>
         <div class="input-group">
             <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
         </div>
         <div class="input-group">
-            <input type="password" class="form-control" id="inputPassword" required v-model="password" placeholder="Password">
+            <input type="password" class="form-control" id="inputPassword" required v-model="password"
+                   placeholder="Password"
+            >
         </div>
         <div class="input-group d-grid gap-2">
             <button class="btn btn-lg btn-primary my-4" type="submit">Submit</button>
@@ -26,10 +30,12 @@
 <script>
 import {ref} from 'vue'
 import useSignup from '@/composables/useSignup'
+import {useToast} from 'vue-toastification'
 
 export default {
     name: 'SignupForm',
     setup(props, context) {
+        const toast = useToast()
         const {error, signup} = useSignup()
 
         const displayName = ref('')
@@ -38,8 +44,12 @@ export default {
 
         const handleSubmit = async () => {
             await signup(email.value, password.value, displayName.value)
-            if (!error) {
+            if (!error.value) {
+                toast.info('Registration was successful.')
+                console.log('Registration was successful.')
                 context.emit('signup')
+            } else {
+                toast.error(error.value)
             }
         }
 
