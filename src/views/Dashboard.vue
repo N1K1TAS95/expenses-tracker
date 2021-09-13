@@ -1,7 +1,7 @@
 <template>
     <Navbar />
     <div class="container pt-4">
-        <h1>Dashboard</h1>
+        <NewEntry />
     </div>
 </template>
 
@@ -10,10 +10,11 @@ import Navbar from '@/components/Navbar'
 import getUser from '@/composables/getUser'
 import {watch} from 'vue'
 import {useRouter} from 'vue-router'
+import NewEntry from '@/components/NewEntry'
 
 export default {
     name: 'Dashboard',
-    components: {Navbar},
+    components: {NewEntry, Navbar},
     setup() {
         const {user} = getUser()
         const router = useRouter()
