@@ -44,8 +44,8 @@
                     <div class="form-group col-lg">
                         <label class="mb-1" for="input_amount">Amount:</label>
                         <div class="input-group">
-                            <input type="number" :class="['form-control', { 'is-invalid' : errors.amount }]"
-                                   id="input_amount" v-model="amount"
+                            <input type="number" inputmode="decimal" :class="['form-control', { 'is-invalid' : errors.amount }]"
+                                   id="input_amount" v-model="amount" step=".01" min="0"
                             >
                         </div>
                         <div class="invalid-feedback d-block">{{ errors.amount }}</div>
@@ -84,7 +84,7 @@ export default {
         const category = ref('')
         const type = ref('EXIT')
         const description = ref('')
-        const amount = ref('')
+        const amount = ref('0.00')
         const date = ref('')
 
         const errors = ref({
