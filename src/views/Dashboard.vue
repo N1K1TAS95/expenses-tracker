@@ -12,12 +12,11 @@ import getUser from '@/composables/getUser'
 import {watch} from 'vue'
 import {useRouter} from 'vue-router'
 import NewEntry from '@/components/NewEntry'
-import EntriesCard from '@/components/EntriesCard'
 import Entries from '@/components/Entries'
 
 export default {
     name: 'Dashboard',
-    components: {Entries, EntriesCard, NewEntry, Navbar},
+    components: {Entries, NewEntry, Navbar},
     setup() {
         const {user} = getUser()
         const router = useRouter()
