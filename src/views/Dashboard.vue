@@ -2,7 +2,7 @@
     <Navbar />
     <div class="container pt-4">
         <NewEntry />
-        <EntriesCard class="mt-4"/>
+        <Entries class="mt-4"/>
     </div>
 </template>
 
@@ -13,10 +13,11 @@ import {watch} from 'vue'
 import {useRouter} from 'vue-router'
 import NewEntry from '@/components/NewEntry'
 import EntriesCard from '@/components/EntriesCard'
+import Entries from '@/components/Entries'
 
 export default {
     name: 'Dashboard',
-    components: {EntriesCard, NewEntry, Navbar},
+    components: {Entries, EntriesCard, NewEntry, Navbar},
     setup() {
         const {user} = getUser()
         const router = useRouter()
