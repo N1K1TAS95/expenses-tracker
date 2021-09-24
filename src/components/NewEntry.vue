@@ -53,7 +53,7 @@
             <div class="row mt-3">
                 <div class="col-lg text-end">
                     <button class="btn btn-outline-success" form="new_entry_form">
-                        <span class="spinner-border spinner-border-sm" role="status" v-if="isLoading"></span>
+                        <span class="spinner-border spinner-border-sm me-2" role="status" v-if="isLoading"></span>
                         <span v-if="isLoading">{{ t('loading') }}...</span>
                         <span v-else>{{ t('add') }}</span>
                     </button>
