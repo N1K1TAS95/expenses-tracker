@@ -18,5 +18,6 @@
   "amount": "Amount",
   "description": "Description",
   "loading": "Loading",
-  "add": "Add"
+  "add": "Add",
+  "language_changed": "Language changed"
 }

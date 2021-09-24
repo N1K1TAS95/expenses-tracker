@@ -7,6 +7,7 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import {projectAuth} from '@/firebase/config'
 import i18n from './i18n'
+import store from './store'
 
 
 const toast_options = {
@@ -21,6 +22,7 @@ let app
 projectAuth.onAuthStateChanged(() => {
     if (!app) {
         app = createApp(App)
+            .use(store)
             .use(i18n)
             .use(router)
             .use(Toast, toast_options)

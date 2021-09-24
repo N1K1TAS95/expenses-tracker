@@ -15,7 +15,8 @@
     "vue": "^3.0.0",
     "vue-i18n": "^9.1.0",
     "vue-router": "^4.0.0-0",
-    "vue-toastification": "^2.0.0-rc.1"
+    "vue-toastification": "^2.0.0-rc.1",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^3.0.0",

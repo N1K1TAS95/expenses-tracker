@@ -12,6 +12,9 @@
                     <li class="nav-item">
                         <button class="btn btn-outline-light" @click="handleClick">{{ t('logout') }}</button>
                     </li>
+                    <li class="nav-item mx-2 my-auto">
+                        <LanguageSelect/>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -23,9 +26,11 @@ import useLogout from '@/composables/useLogout'
 import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
 import {useI18n} from 'vue-i18n'
+import LanguageSelect from '@/components/LanguageSelect'
 
 export default {
     name: 'Navbar',
+    components: {LanguageSelect},
     setup() {
         const {t} = useI18n()
         const toast = useToast()
