@@ -1,7 +1,6 @@
 <template>
     <Navbar />
     <div class="container pt-4">
-        <NewEntry />
         <Entries class="mt-4"/>
     </div>
 </template>

@@ -1,67 +1,61 @@
 <template>
-    <div class="card">
-        <div class="card-header d-flex flex-row flex-wrap justify-content-between py-3">
-            <h2 class="my-auto flex-sm-grow-0 flex-grow-1">
-                New Entry
-            </h2>
-            <div class="btn-group flex-sm-grow-0 flex-grow-1" role="group">
-                <button class="btn btn-success" form="new_entry_form">
-                    Add
-                </button>
-            </div>
-        </div>
-        <div class="card-body">
-            <form id="new_entry_form" @submit.prevent="addNewEntry" novalidate>
-                <div class="row">
-                    <div class="form-group col-lg">
-                        <label class="mb-1" for="input_date">Date:</label>
-                        <div class="input-group">
-                            <input type="date" :class="['form-control', { 'is-invalid' : errors.date }]" v-model="date"
-                                   id="input_date"
-                            >
-                        </div>
-                        <div class="invalid-feedback d-block">{{ errors.date }}</div>
+    <div class="card-body border-bottom">
+        <form id="new_entry_form" @submit.prevent="addNewEntry" novalidate>
+            <div class="row">
+                <div class="form-group col-lg">
+                    <label class="mb-1" for="input_date">Date:</label>
+                    <div class="input-group">
+                        <input type="date" :class="['form-control', { 'is-invalid' : errors.date }]" v-model="date"
+                               id="input_date"
+                        >
                     </div>
-                    <div class="form-group col-lg">
-                        <label class="mb-1" for="input_date">Type:</label>
-                        <div class="input-group">
-                            <select class="form-select" v-model="type" id="input_type">
-                                <option value="EXIT">Exit</option>
-                                <option value="ENTRY">Entry</option>
-                            </select>
-                        </div>
-                        <div class="invalid-feedback d-block"></div>
-                    </div>
-                    <div class="form-group col-lg">
-                        <label class="mb-1" for="input_category">Category:</label>
-                        <div class="input-group">
-                            <input type="text" :class="['form-control', { 'is-invalid' : errors.category }]"
-                                   id="input_category" v-model="category"
-                            >
-                        </div>
-                        <div class="invalid-feedback d-block">{{ errors.category }}</div>
-                    </div>
-                    <div class="form-group col-lg">
-                        <label class="mb-1" for="input_amount">Amount:</label>
-                        <div class="input-group">
-                            <input type="number" inputmode="decimal" :class="['form-control', { 'is-invalid' : errors.amount }]"
-                                   id="input_amount" v-model="amount" step=".01" min="0"
-                            >
-                        </div>
-                        <div class="invalid-feedback d-block">{{ errors.amount }}</div>
-                    </div>
+                    <div class="invalid-feedback d-block">{{ errors.date }}</div>
                 </div>
-                <div class="row mt-3">
-                    <div class="form-group col-lg">
-                        <label class="mb-1" for="input_description">Description:</label>
-                        <div class="input-group">
+                <div class="form-group col-lg">
+                    <label class="mb-1" for="input_date">Type:</label>
+                    <div class="input-group">
+                        <select class="form-select" v-model="type" id="input_type">
+                            <option value="EXIT">Exit</option>
+                            <option value="ENTRY">Entry</option>
+                        </select>
+                    </div>
+                    <div class="invalid-feedback d-block"></div>
+                </div>
+                <div class="form-group col-lg">
+                    <label class="mb-1" for="input_category">Category:</label>
+                    <div class="input-group">
+                        <input type="text" :class="['form-control', { 'is-invalid' : errors.category }]"
+                               id="input_category" v-model="category"
+                        >
+                    </div>
+                    <div class="invalid-feedback d-block">{{ errors.category }}</div>
+                </div>
+                <div class="form-group col-lg">
+                    <label class="mb-1" for="input_amount">Amount:</label>
+                    <div class="input-group">
+                        <input type="number" inputmode="decimal"
+                               :class="['form-control', { 'is-invalid' : errors.amount }]"
+                               id="input_amount" v-model="amount" step=".01" min="0"
+                        >
+                    </div>
+                    <div class="invalid-feedback d-block">{{ errors.amount }}</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="form-group col-lg">
+                    <label class="mb-1" for="input_description">Description:</label>
+                    <div class="input-group">
                             <textarea class="form-control" id="input_description" v-model="description" rows="5"
                             ></textarea>
-                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg text-end">
+                    <button class="btn btn-outline-success" form="new_entry_form">Add</button>
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 

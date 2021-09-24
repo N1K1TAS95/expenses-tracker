@@ -1,12 +1,31 @@
 <template>
     <div class="card">
+        <div class="card-header d-flex flex-row flex-wrap justify-content-between py-3">
+            <h2 class="my-auto flex-sm-grow-0 flex-grow-1">
+                Entries
+            </h2>
+            <div class="btn-group flex-sm-grow-0 flex-grow-1" role="group">
+                <a :class="['btn', {'btn-success': !add}, {'btn-danger': add}]"
+                   data-bs-toggle="collapse"
+                   role="button"
+                   href="#add_new_entry_collapse"
+                   @click="add = !add"
+                >
+                    <span v-if="add">Cancel</span>
+                    <span v-else>Add</span>
+                </a>
+            </div>
+        </div>
+        <div class="collapse" id="add_new_entry_collapse">
+            <NewEntry />
+        </div>
         <div :class="['card-body', {'border-bottom' : index !== documents.length - 1}]"
              v-for="(doc, index) in documents" :key="doc.id"
         >
             <div class="row">
                 <div class="col-lg-2">
                     <div class="badge bg-primary">
-                    {{ new Date(doc.date).toLocaleDateString() }}
+                        {{ new Date(doc.date).toLocaleDateString() }}
                     </div>
                 </div>
                 <div class="col-lg-3 mt-2 mt-lg-0">
@@ -31,9 +50,12 @@
 import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
+import {ref} from 'vue'
+import NewEntry from '@/components/NewEntry'
 
 export default {
     name: 'Entries',
+    components: {NewEntry},
     setup() {
         const toast = useToast()
         const {user} = getUser()
@@ -42,7 +64,10 @@ export default {
         if (error.value) {
             toast.error(error.value)
         }
-        return {error, documents}
+
+        const add = ref(false)
+
+        return {error, documents, add}
     }
 }
 </script>
