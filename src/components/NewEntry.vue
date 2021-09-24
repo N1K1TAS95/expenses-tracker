@@ -52,7 +52,11 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg text-end">
-                    <button class="btn btn-outline-success" form="new_entry_form">Add</button>
+                    <button class="btn btn-outline-success" form="new_entry_form">
+                        <span class="spinner-border spinner-border-sm" role="status" v-if="isLoading"></span>
+                        <span v-if="isLoading">Loading...</span>
+                        <span v-else>Add</span>
+                    </button>
                 </div>
             </div>
         </form>
@@ -72,7 +76,7 @@ export default {
     components: {Dashboard},
     setup(props, context) {
         const {user} = getUser()
-        const {addDoc, error} = useCollection(user.value.uid, 'entries')
+        const {addDoc, error, isLoading} = useCollection(user.value.uid, 'entries')
         const toast = useToast()
 
         const category = ref('')
@@ -143,7 +147,8 @@ export default {
             amount,
             date,
             errors,
-            addNewEntry
+            addNewEntry,
+            isLoading
         }
     }
 }

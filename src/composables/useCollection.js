@@ -3,16 +3,20 @@ import {projectFirestore} from '@/firebase/config'
 
 const useCollection = (userID, collection) => {
     const error = ref(null)
+    const isLoading = ref(false)
     const addDoc = async (doc) => {
         error.value = null
+        isLoading.value = true
         try {
             await projectFirestore.collection('users').doc(userID).collection(collection).add(doc)
+            isLoading.value = false
         } catch (err) {
+            isLoading.value = false
             error.value = err.message
             console.log(err.message)
         }
     }
-    return {error, addDoc}
+    return {error, isLoading, addDoc}
 }
 
 export default useCollection
