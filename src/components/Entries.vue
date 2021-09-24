@@ -53,11 +53,13 @@ import getCollection from '@/composables/getCollection'
 import {ref} from 'vue'
 import NewEntry from '@/components/NewEntry'
 import {Collapse} from 'bootstrap'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'Entries',
     components: {NewEntry},
     setup() {
+        const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
         const {error, documents} = getCollection(user.value.uid, 'entries')
@@ -74,7 +76,7 @@ export default {
             add.value = false
         }
 
-        return {error, documents, add, hideAddEntry}
+        return {error, documents, add, hideAddEntry, t}
     }
 }
 </script>

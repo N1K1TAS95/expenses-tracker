@@ -13,17 +13,19 @@ import {ref} from 'vue'
 import LoginForm from '@/components/LoginForm'
 import {useRouter} from 'vue-router'
 import {useToast} from 'vue-toastification'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'Welcome',
     components: {LoginForm, SignupForm},
     setup() {
+        const {t} = useI18n()
         const toast = useToast()
         const showLogin = ref(true)
         const router = useRouter()
 
         const enter = () => {
-            toast.success('Successfully logged in!')
+            toast.success(t('login_successful'))
             router.push({name: 'Dashboard'})
         }
 

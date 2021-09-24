@@ -1,0 +1,22 @@
+{
+  "app_name": "Expenses Tracker",
+  "logout": "Logout",
+  "entries": "Entries",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "submit": "Submit",
+  "signup": "Sign Up",
+  "display_name": "Display Name",
+  "registration_successful": "Registration was successful!",
+  "login_successful": "Successfully logged in!",
+  "date": "Date",
+  "type": "Type",
+  "exit": "Exit",
+  "entry": "Entry",
+  "category": "Category",
+  "amount": "Amount",
+  "description": "Description",
+  "loading": "Loading",
+  "add": "Add"
+}

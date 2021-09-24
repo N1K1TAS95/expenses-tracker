@@ -3,7 +3,7 @@
         <form id="new_entry_form" @submit.prevent="addNewEntry" novalidate>
             <div class="row">
                 <div class="form-group col-lg">
-                    <label class="mb-1" for="input_date">Date:</label>
+                    <label class="mb-1" for="input_date">{{ t('date') }}:</label>
                     <div class="input-group">
                         <input type="date" :class="['form-control', { 'is-invalid' : errors.date }]" v-model="date"
                                id="input_date"
@@ -12,17 +12,17 @@
                     <div class="invalid-feedback d-block">{{ errors.date }}</div>
                 </div>
                 <div class="form-group col-lg">
-                    <label class="mb-1" for="input_date">Type:</label>
+                    <label class="mb-1" for="input_date">{{ t('type') }}:</label>
                     <div class="input-group">
                         <select class="form-select" v-model="type" id="input_type">
-                            <option value="EXIT">Exit</option>
-                            <option value="ENTRY">Entry</option>
+                            <option value="EXIT">{{ t('exit') }}</option>
+                            <option value="ENTRY">{{ t('entry') }}</option>
                         </select>
                     </div>
                     <div class="invalid-feedback d-block"></div>
                 </div>
                 <div class="form-group col-lg">
-                    <label class="mb-1" for="input_category">Category:</label>
+                    <label class="mb-1" for="input_category">{{ t('category') }}:</label>
                     <div class="input-group">
                         <input type="text" :class="['form-control', { 'is-invalid' : errors.category }]"
                                id="input_category" v-model="category"
@@ -31,7 +31,7 @@
                     <div class="invalid-feedback d-block">{{ errors.category }}</div>
                 </div>
                 <div class="form-group col-lg">
-                    <label class="mb-1" for="input_amount">Amount:</label>
+                    <label class="mb-1" for="input_amount">{{ t('amount') }}:</label>
                     <div class="input-group">
                         <input type="number" inputmode="decimal"
                                :class="['form-control', { 'is-invalid' : errors.amount }]"
@@ -43,7 +43,7 @@
             </div>
             <div class="row mt-3">
                 <div class="form-group col-lg">
-                    <label class="mb-1" for="input_description">Description:</label>
+                    <label class="mb-1" for="input_description">{{ t('description') }}:</label>
                     <div class="input-group">
                             <textarea class="form-control" id="input_description" v-model="description" rows="5"
                             ></textarea>
@@ -54,8 +54,8 @@
                 <div class="col-lg text-end">
                     <button class="btn btn-outline-success" form="new_entry_form">
                         <span class="spinner-border spinner-border-sm" role="status" v-if="isLoading"></span>
-                        <span v-if="isLoading">Loading...</span>
-                        <span v-else>Add</span>
+                        <span v-if="isLoading">{{ t('loading') }}...</span>
+                        <span v-else>{{ t('add') }}</span>
                     </button>
                 </div>
             </div>
@@ -70,11 +70,13 @@ import getUser from '@/composables/getUser'
 import {timestamp} from '@/firebase/config'
 import {useToast} from 'vue-toastification'
 import Dashboard from '@/views/Dashboard'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'NewEntry',
     components: {Dashboard},
     setup(props, context) {
+        const {t} = useI18n()
         const {user} = getUser()
         const {addDoc, error, isLoading} = useCollection(user.value.uid, 'entries')
         const toast = useToast()
@@ -148,7 +150,8 @@ export default {
             date,
             errors,
             addNewEntry,
-            isLoading
+            isLoading,
+            t
         }
     }
 }

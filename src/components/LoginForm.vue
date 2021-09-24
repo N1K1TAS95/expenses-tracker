@@ -2,21 +2,21 @@
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
         <div class="text-center mb-4">
             <img src="@/assets/money-bag.png" width="125" alt="">
-            <h4 class="mt-3">Login</h4>
+            <h4 class="mt-3">{{ t('login') }}</h4>
         </div>
         <div class="input-group mt-4">
-            <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
+            <input type="email" class="form-control" id="inputEmail" required v-model="email" :placeholder="t('email')">
         </div>
         <div class="input-group">
             <input type="password" class="form-control" id="inputPassword" required v-model="password"
-                   placeholder="Password"
+                   :placeholder="t('password')"
             >
         </div>
         <div class="input-group d-grid gap-2">
-            <button class="btn btn-lg btn-primary my-4" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary my-4" type="submit">{{ t('submit') }}</button>
         </div>
         <div class="input-group">
-            <button class="btn btn-secondary my-2 mx-auto" @click.prevent="$emit('signup')">Sign Up</button>
+            <button class="btn btn-secondary my-2 mx-auto" @click.prevent="$emit('signup')">{{ t('signup') }}</button>
         </div>
     </form>
 </template>
@@ -25,10 +25,12 @@
 import {ref} from 'vue'
 import useLogin from '@/composables/useLogin'
 import {useToast} from 'vue-toastification'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'LoginForm',
     setup(props, context) {
+        const {t} = useI18n()
         const toast = useToast()
         const {error, login} = useLogin()
 
@@ -48,7 +50,8 @@ export default {
             email,
             password,
             handleSubmit,
-            error
+            error,
+            t
         }
     }
 }

@@ -1,28 +1,28 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
-        <h1>Sign Up</h1>
+        <h1>{{ t('signup') }}</h1>
         <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert" v-if="error">
             {{ error }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="input-group mt-4">
             <input type="text" class="form-control" id="inputUsername" required v-model="displayName"
-                   placeholder="Display Name"
+                   :placeholder="t('display_name')"
             >
         </div>
         <div class="input-group">
-            <input type="email" class="form-control" id="inputEmail" required v-model="email" placeholder="Email">
+            <input type="email" class="form-control" id="inputEmail" required v-model="email" :placeholder="t('email')">
         </div>
         <div class="input-group">
             <input type="password" class="form-control" id="inputPassword" required v-model="password"
-                   placeholder="Password"
+                   :placeholder="t('password')"
             >
         </div>
         <div class="input-group d-grid gap-2">
-            <button class="btn btn-lg btn-primary my-4" type="submit">Submit</button>
+            <button class="btn btn-lg btn-primary my-4" type="submit">{{ t('submit') }}</button>
         </div>
         <div class="input-group">
-            <button class="btn btn-secondary my-2 mx-auto" @click.prevent="$emit('login')">Login</button>
+            <button class="btn btn-secondary my-2 mx-auto" @click.prevent="$emit('login')">{{ t('login') }}</button>
         </div>
     </form>
 </template>
@@ -31,10 +31,13 @@
 import {ref} from 'vue'
 import useSignup from '@/composables/useSignup'
 import {useToast} from 'vue-toastification'
+import {useI18n} from 'vue-i18n'
+
 
 export default {
     name: 'SignupForm',
     setup(props, context) {
+        const {t} = useI18n()
         const toast = useToast()
         const {error, signup} = useSignup()
 
@@ -45,7 +48,7 @@ export default {
         const handleSubmit = async () => {
             await signup(email.value, password.value, displayName.value)
             if (!error.value) {
-                toast.info('Registration was successful.')
+                toast.info(t('registration_successful'))
                 console.log('Registration was successful.')
                 context.emit('signup')
             } else {
@@ -58,7 +61,8 @@ export default {
             email,
             password,
             handleSubmit,
-            error
+            error,
+            t
         }
     }
 }
