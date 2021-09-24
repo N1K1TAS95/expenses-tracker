@@ -4,7 +4,8 @@ import {projectFirestore} from '@/firebase/config'
 const getCollection = (userID, collection) => {
     const documents = ref(null)
     const error = ref(null)
-    let collectionRef = projectFirestore.collection('users').doc(userID).collection(collection).orderBy('createdAt', 'desc')
+    let collectionRef = projectFirestore.collection('users').doc(userID).collection(collection)
+    //.orderBy('createdAt', 'desc') // TODO
     collectionRef.onSnapshot((snap) => {
         let results = []
         snap.docs.forEach(doc => {

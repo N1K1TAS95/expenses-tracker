@@ -1,6 +1,7 @@
 <template>
     <div class="card-body border-bottom">
         <form id="new_entry_form" @submit.prevent="addNewEntry" novalidate>
+            <Categories />
             <div class="row">
                 <div class="form-group col-lg">
                     <label class="mb-1" for="input_date">{{ t('date') }}:</label>
@@ -14,7 +15,9 @@
                 <div class="form-group col-lg">
                     <label class="mb-1" for="input_date">{{ t('type') }}:</label>
                     <div class="input-group">
-                        <select :class="['form-select', type === 'EXIT' ? 'border-danger' : 'border-success']" v-model="type" id="input_type">
+                        <select :class="['form-select', type === 'EXIT' ? 'border-danger' : 'border-success']"
+                                v-model="type" id="input_type"
+                        >
                             <option value="EXIT">{{ t('exit') }}</option>
                             <option value="ENTRY">{{ t('entry') }}</option>
                         </select>
@@ -71,10 +74,11 @@ import {timestamp} from '@/firebase/config'
 import {useToast} from 'vue-toastification'
 import Dashboard from '@/views/Dashboard'
 import {useI18n} from 'vue-i18n'
+import Categories from '@/components/Categories'
 
 export default {
     name: 'NewEntry',
-    components: {Dashboard},
+    components: {Categories, Dashboard},
     setup(props, context) {
         const {t} = useI18n()
         const {user} = getUser()
