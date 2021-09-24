@@ -14,7 +14,7 @@
                 <div class="form-group col-lg">
                     <label class="mb-1" for="input_date">{{ t('type') }}:</label>
                     <div class="input-group">
-                        <select class="form-select" v-model="type" id="input_type">
+                        <select :class="['form-select', type === 'EXIT' ? 'border-danger' : 'border-success']" v-model="type" id="input_type">
                             <option value="EXIT">{{ t('exit') }}</option>
                             <option value="ENTRY">{{ t('entry') }}</option>
                         </select>
@@ -85,7 +85,8 @@ export default {
         const type = ref('EXIT')
         const description = ref('')
         const amount = ref('0.00')
-        const date = ref('')
+        const today = new Date().toLocaleDateString('en-CA')
+        const date = ref(today)
 
         const errors = ref({
             category: '',
@@ -134,7 +135,7 @@ export default {
                     context.emit('added_new_entry')
                     category.value = ''
                     description.value = ''
-                    date.value = ''
+                    date.value = today
                     amount.value = ''
                 } else {
                     toast.error(error.value)

@@ -1,6 +1,6 @@
 <template>
     <Navbar />
-    <div class="container pt-4">
+    <div class="container pt-1 pb-3">
         <Entries class="mt-4"/>
     </div>
 </template>

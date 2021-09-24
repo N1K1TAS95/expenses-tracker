@@ -1,7 +1,10 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container my-2">
-            <router-link :to="{ name: 'Dashboard' }" class="navbar-brand">{{ t('app_name') }}</router-link>
+            <router-link :to="{ name: 'Dashboard' }" class="navbar-brand">
+                <i class="bi bi-graph-up me-2"></i>
+                {{ t('app_name') }}
+            </router-link>
             <div class="justify-content-end">
                 <ul class="navbar-nav my-auto">
                     <li class="nav-item">
@@ -9,8 +12,8 @@
                     <li class="nav-item nav-link active" v-if="user">
                         {{ user.displayName }}
                     </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light" @click="handleClick">{{ t('logout') }}</button>
+                    <li class="nav-item my-auto">
+                        <button class="btn btn-sm btn-outline-light" @click="handleClick">{{ t('logout') }}</button>
                     </li>
                     <li class="nav-item mx-2 my-auto">
                         <LanguageSelect/>

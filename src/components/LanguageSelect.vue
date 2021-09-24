@@ -1,5 +1,5 @@
 <template>
-    <select v-model="locale" class="form-select">
+    <select v-model="locale" class="form-select form-select-sm">
         <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
             {{ lang.toUpperCase() }}
         </option>

@@ -1,8 +1,9 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
         <div class="text-center mb-4">
-            <img src="@/assets/money-bag.png" width="125" alt="">
-            <h4 class="mt-3">{{ t('login') }}</h4>
+            <i class="bi bi-graph-up display-1"></i>
+            <h4 class="mt-3">{{ t('app_name')}}</h4>
+            <h5 class="mt-5">{{ t('login') }}</h5>
         </div>
         <div class="input-group mt-4">
             <input type="email" class="form-control" id="inputEmail" required v-model="email" :placeholder="t('email')">

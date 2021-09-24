@@ -1,10 +1,8 @@
 <template>
     <form class="form-signin text-center" @submit.prevent="handleSubmit">
-        <h1>{{ t('signup') }}</h1>
-        <div class="alert alert-danger alert-dismissible fade show mt-4" role="alert" v-if="error">
-            {{ error }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        <i class="bi bi-graph-up display-1"></i>
+        <h4 class="mt-3">{{ t('app_name')}}</h4>
+        <h5 class="mt-5">{{ t('signup') }}</h5>
         <div class="input-group mt-4">
             <input type="text" class="form-control" id="inputUsername" required v-model="displayName"
                    :placeholder="t('display_name')"
