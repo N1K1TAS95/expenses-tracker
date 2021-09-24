@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header d-flex flex-row flex-wrap justify-content-between py-3">
             <h2 class="my-auto flex-sm-grow-0 flex-grow-1">
-                Entries
+                {{ t('entries') }}
             </h2>
             <div class="btn-group flex-sm-grow-0 flex-grow-1" role="group">
                 <a :class="['btn', {'btn-success': !add}, {'btn-danger': add}]"
@@ -11,8 +11,8 @@
                    href="#add_new_entry_collapse"
                    @click="add = !add"
                 >
-                    <span v-if="add">Cancel</span>
-                    <span v-else>Add</span>
+                    <span v-if="add">{{ t('cancel') }}</span>
+                    <span v-else>{{ t('add') }}</span>
                 </a>
             </div>
         </div>

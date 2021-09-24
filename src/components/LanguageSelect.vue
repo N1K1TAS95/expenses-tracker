@@ -23,7 +23,7 @@ export default {
             localStorage.setItem('language', locale.value)
             toast.success(t('language_changed'))
         })
-        const langs = ref(['en'])
+        const langs = ref(['en', 'it'])
         return {store, t, locale, langs}
     }
 }
