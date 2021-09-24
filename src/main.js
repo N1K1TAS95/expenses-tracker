@@ -8,6 +8,7 @@ import 'vue-toastification/dist/index.css'
 import {projectAuth} from '@/firebase/config'
 import i18n from './i18n'
 import store from './store'
+import '@/assets/main.css'
 
 
 const toast_options = {
