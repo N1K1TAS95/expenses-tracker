@@ -70,7 +70,7 @@ import Dashboard from '@/views/Dashboard'
 export default {
     name: 'NewEntry',
     components: {Dashboard},
-    setup() {
+    setup(props, context) {
         const {user} = getUser()
         const {addDoc, error} = useCollection(user.value.uid, 'entries')
         const toast = useToast()
@@ -124,11 +124,12 @@ export default {
                 }
                 await addDoc(entry)
                 if (!error.value) {
+                    toast.success('New Entry added successfully!')
+                    context.emit('added_new_entry')
                     category.value = ''
                     description.value = ''
                     date.value = ''
                     amount.value = ''
-                    toast.success('New Entry added successfully!')
                 } else {
                     toast.error(error.value)
                 }

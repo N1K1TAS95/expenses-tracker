@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="collapse" id="add_new_entry_collapse">
-            <NewEntry />
+            <NewEntry @added_new_entry="hideAddEntry" />
         </div>
         <div :class="['card-body', {'border-bottom' : index !== documents.length - 1}]"
              v-for="(doc, index) in documents" :key="doc.id"
@@ -52,6 +52,7 @@ import getUser from '@/composables/getUser'
 import getCollection from '@/composables/getCollection'
 import {ref} from 'vue'
 import NewEntry from '@/components/NewEntry'
+import {Collapse} from 'bootstrap'
 
 export default {
     name: 'Entries',
@@ -67,7 +68,13 @@ export default {
 
         const add = ref(false)
 
-        return {error, documents, add}
+        const hideAddEntry = () => {
+            const addCollapse = new Collapse(document.getElementById('add_new_entry_collapse'), {})
+            addCollapse.hide()
+            add.value = false
+        }
+
+        return {error, documents, add, hideAddEntry}
     }
 }
 </script>
