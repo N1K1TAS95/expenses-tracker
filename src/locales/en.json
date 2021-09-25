@@ -20,5 +20,10 @@
   "loading": "Loading",
   "add": "Add",
   "cancel": "Cancel",
-  "language_changed": "Language changed"
+  "language_changed": "Language changed",
+  "name": "Name",
+  "icon_class": "Icon Class",
+  "new_category": "New Category",
+  "empty": "Empty",
+  "category_added_successfully": "Category added successfully!"
 }

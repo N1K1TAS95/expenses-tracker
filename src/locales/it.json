@@ -20,5 +20,10 @@
   "loading": "Caricamento",
   "add": "Aggiungi",
   "cancel": "Annulla",
-  "language_changed": "Lingua Cambiata"
+  "language_changed": "Lingua Cambiata",
+  "name": "Nome",
+  "icon_class": "Classe Icona",
+  "new_category": "Nuova Categoria",
+  "empty": "Vuoto",
+  "category_added_successfully": "Categoria aggiunta con successo!"
 }
