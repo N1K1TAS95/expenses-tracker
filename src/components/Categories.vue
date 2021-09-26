@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-lg mb-2">
             <label class="mb-2">{{ t('category') }}:</label>
-            <div class="row row-cols-3 row-cols-lg-6">
-                <div :class="['col', {'mt-4' : index > 5}]" v-for="(category, index) in documents" :key="category.id"
+            <div class="row row-cols-3 row-cols-lg-6 g-4">
+                <div class="col" v-for="(category, index) in documents" :key="category.id"
                      @click="selectCategory(category.id)">
                     <div :class="['card', {'text-white' : selectedCategory === category.id}]">
                         <DeleteCategory class="position-absolute top-0 start-100 translate-middle"
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col mt-4 mt-lg-0">
+                <div class="col">
                     <a :class="['btn', 'btn-lg', 'new_category_button', add ? 'btn-outline-danger' : 'btn-outline-success']"
                        data-bs-toggle="collapse"
                        role="button"

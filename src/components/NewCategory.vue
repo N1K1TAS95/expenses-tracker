@@ -1,6 +1,6 @@
 <template>
     <form id="new_category_form" @submit.prevent="addCategory" novalidate>
-        <div class="row">
+        <div class="row gy-3">
             <div class="form-group col-lg">
                 <div class="input-group">
                     <input type="text" :class="['form-control', { 'is-invalid' : errors.name }]"
