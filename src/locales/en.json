@@ -26,5 +26,6 @@
   "new_category": "New Category",
   "empty": "Empty",
   "category_added_successfully": "Category added successfully!",
-  "category_deleted_successfully": "Category deleted successfully!"
+  "category_deleted_successfully": "Category deleted successfully!",
+  "select_category": "Please, select a category."
 }

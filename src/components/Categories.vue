@@ -52,6 +52,7 @@ import DeleteCategory from '@/components/DeleteCategory'
 export default {
     name: 'Categories',
     components: {DeleteCategory, NewCategory, NewEntry},
+    emits: ['selected_category'],
     setup(props, context) {
         const {t} = useI18n()
         const toast = useToast()

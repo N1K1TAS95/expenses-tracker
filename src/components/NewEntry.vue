@@ -1,7 +1,7 @@
 <template>
     <div class="card-body border-bottom">
         <form id="new_entry_form" @submit.prevent="addNewEntry" novalidate>
-            <Categories />
+            <Categories @selected_category="selectCategory"/>
             <div class="row">
                 <div class="form-group col-lg">
                     <label class="mb-1" for="input_date">{{ t('date') }}:</label>
@@ -23,15 +23,6 @@
                         </select>
                     </div>
                     <div class="invalid-feedback d-block"></div>
-                </div>
-                <div class="form-group col-lg">
-                    <label class="mb-1" for="input_category">{{ t('category') }}:</label>
-                    <div class="input-group">
-                        <input type="text" :class="['form-control', { 'is-invalid' : errors.category }]"
-                               id="input_category" v-model="category"
-                        >
-                    </div>
-                    <div class="invalid-feedback d-block">{{ errors.category }}</div>
                 </div>
                 <div class="form-group col-lg">
                     <label class="mb-1" for="input_amount">{{ t('amount') }}:</label>
@@ -108,7 +99,7 @@ export default {
             resetErrors()
             let ret = true
             if (!category.value) {
-                errors.value.category = 'Empty'
+                toast.error(t('select_category'))
                 ret = false
             }
             if (isNaN(parseFloat(amount.value))) {
@@ -147,6 +138,10 @@ export default {
             }
         }
 
+        const selectCategory = (categoryID) => {
+            category.value = categoryID
+        }
+
         return {
             category,
             type,
@@ -156,7 +151,8 @@ export default {
             errors,
             addNewEntry,
             isLoading,
-            t
+            t,
+            selectCategory
         }
     }
 }
