@@ -8,6 +8,10 @@ import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'App',
+    title() {
+        const {t} = useI18n()
+        return `${t('app_name')}`
+    },
     setup() {
         const {locale} = useI18n()
         const store = useStore()

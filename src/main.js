@@ -9,6 +9,7 @@ import {projectAuth} from '@/firebase/config'
 import i18n from './i18n'
 import store from './store'
 import '@/assets/main.css'
+import titleMixin from '@/mixins/titleMixin'
 
 
 const toast_options = {
@@ -27,6 +28,7 @@ projectAuth.onAuthStateChanged(() => {
             .use(i18n)
             .use(router)
             .use(Toast, toast_options)
+            .mixin(titleMixin)
             .mount('#app')
     }
 })

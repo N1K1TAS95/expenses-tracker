@@ -28,5 +28,6 @@
   "category_added_successfully": "Categoria aggiunta con successo!",
   "category_deleted_successfully": "Categoria eliminata con successo!",
   "select_category": "Per favore, selezionare una categoria.",
-  "error_less_or_equal_zero": "Deve essere maggiore di 0.00"
+  "error_less_or_equal_zero": "Deve essere maggiore di 0.00",
+  "dashboard": "Dashboard"
 }

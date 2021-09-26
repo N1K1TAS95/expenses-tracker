@@ -30,6 +30,10 @@ import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'LoginForm',
+    title() {
+        const {t} = useI18n()
+        return `${t('app_name')} | ${t('login')}`
+    },
     setup(props, context) {
         const {t} = useI18n()
         const toast = useToast()

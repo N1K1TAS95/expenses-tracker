@@ -12,9 +12,14 @@ import {watch} from 'vue'
 import {useRouter} from 'vue-router'
 import NewEntry from '@/components/NewEntry'
 import Entries from '@/components/Entries'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'Dashboard',
+    title() {
+        const {t} = useI18n()
+        return `${t('app_name')} | ${t('dashboard')}`
+    },
     components: {Entries, NewEntry, Navbar},
     setup() {
         const {user} = getUser()
