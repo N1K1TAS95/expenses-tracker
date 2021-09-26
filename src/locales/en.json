@@ -25,5 +25,6 @@
   "icon_class": "Icon Class",
   "new_category": "New Category",
   "empty": "Empty",
-  "category_added_successfully": "Category added successfully!"
+  "category_added_successfully": "Category added successfully!",
+  "category_deleted_successfully": "Category deleted successfully!"
 }

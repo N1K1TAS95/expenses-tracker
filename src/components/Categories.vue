@@ -2,10 +2,14 @@
     <div class="row">
         <div class="col-lg mb-2">
             <label class="mb-2">{{ t('category') }}:</label>
-            <div class="row row-cols-6">
-                <div :class="['col-2', {'mt-4' : index > 5}]" v-for="(category, index) in documents" :key="category.id">
-                    <div class="card">
-                        <div class="card-body text-center">
+            <div class="row row-cols-auto">
+                <div :class="['col-2', {'mt-4' : index > 5}]" v-for="(category, index) in documents" :key="category.id"
+                     @click="selectCategory(category.id)">
+                    <div :class="['card', {'text-white' : selectedCategory === category.id}]">
+                        <DeleteCategory class="position-absolute top-0 start-100 translate-middle"
+                                        :category-i-d="category.id" @category_deleted="removedCategory"/>
+                        <div
+                            :class="['card-body', 'text-center', {'bg-primary rounded-1 border-0' : selectedCategory === category.id}]">
                             <i :class="category.icon_class" style="font-size: 25px"></i>
                             <br>
                             <span style="font-size: 12px">{{ category.name }}</span>
@@ -43,11 +47,12 @@ import NewEntry from '@/components/NewEntry'
 import NewCategory from '@/components/NewCategory'
 import {ref} from 'vue'
 import {Collapse} from 'bootstrap'
+import DeleteCategory from '@/components/DeleteCategory'
 
 export default {
     name: 'Categories',
-    components: {NewCategory, NewEntry},
-    setup() {
+    components: {DeleteCategory, NewCategory, NewEntry},
+    setup(props, context) {
         const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
@@ -65,7 +70,21 @@ export default {
             add.value = false
         }
 
-        return {error, documents, t, add, hideAddCategory}
+        const selectedCategory = ref('')
+
+        const selectCategory = (id) => {
+            selectedCategory.value = id
+            context.emit('selected_category', id)
+        }
+
+        const removedCategory = (categoryID) => {
+            if (selectedCategory.value === categoryID) {
+                selectedCategory.value = ''
+                context.emit('selected_category', '')
+            }
+        }
+
+        return {error, documents, t, add, hideAddCategory, selectedCategory, selectCategory, removedCategory}
     }
 }
 </script>
