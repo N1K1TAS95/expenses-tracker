@@ -103,11 +103,14 @@ export default {
                 ret = false
             }
             if (isNaN(parseFloat(amount.value))) {
-                errors.value.amount = 'Empty'
+                errors.value.amount = t('empty')
+                ret = false
+            } else if (parseFloat(amount.value) <= 0) {
+                errors.value.amount = t('error_less_or_equal_zero')
                 ret = false
             }
             if (isNaN(Date.parse(date.value))) {
-                errors.value.date = 'Empty'
+                errors.value.date = t('empty')
                 ret = false
             }
             return ret
@@ -126,12 +129,13 @@ export default {
                 }
                 await addDoc(entry)
                 if (!error.value) {
+                    resetErrors()
                     toast.success('New Entry added successfully!')
                     context.emit('added_new_entry')
                     category.value = ''
                     description.value = ''
                     date.value = today
-                    amount.value = ''
+                    amount.value = '0.0'
                 } else {
                     toast.error(error.value)
                 }
