@@ -2,21 +2,21 @@
     <div class="row">
         <div class="col-lg mb-2">
             <label class="mb-2">{{ t('category') }}:</label>
-            <div class="row row-cols-auto">
-                <div :class="['col-2', {'mt-4' : index > 5}]" v-for="(category, index) in documents" :key="category.id"
+            <div class="row row-cols-3 row-cols-lg-6">
+                <div :class="['col', {'mt-4' : index > 5}]" v-for="(category, index) in documents" :key="category.id"
                      @click="selectCategory(category.id)">
                     <div :class="['card', {'text-white' : selectedCategory === category.id}]">
                         <DeleteCategory class="position-absolute top-0 start-100 translate-middle"
                                         :category-i-d="category.id" @category_deleted="removedCategory"/>
                         <div
-                            :class="['card-body', 'text-center', {'bg-primary rounded-1 border-0' : selectedCategory === category.id}]">
+                            :class="['card-body', 'text-center', 'text-truncate', {'bg-primary rounded-1 border-0' : selectedCategory === category.id}]">
                             <i :class="category.icon_class" style="font-size: 25px"></i>
                             <br>
                             <span style="font-size: 12px">{{ category.name }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col mt-4 mt-lg-0">
                     <a :class="['btn', 'btn-lg', 'new_category_button', add ? 'btn-outline-danger' : 'btn-outline-success']"
                        data-bs-toggle="collapse"
                        role="button"
