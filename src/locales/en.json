@@ -29,5 +29,6 @@
   "category_deleted_successfully": "Category deleted successfully!",
   "select_category": "Please, select a category.",
   "error_less_or_equal_zero": "Should be more than 0.00",
-  "dashboard": "Dashboard"
+  "dashboard": "Dashboard",
+  "category_is_used": "Category is used!"
 }

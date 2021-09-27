@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import SignupForm from '@/components/SignupForm'
+import SignupForm from '@/components/auth/SignupForm'
 import {ref} from 'vue'
-import LoginForm from '@/components/LoginForm'
+import LoginForm from '@/components/auth/LoginForm'
 import {useRouter} from 'vue-router'
 import {useToast} from 'vue-toastification'
 import {useI18n} from 'vue-i18n'

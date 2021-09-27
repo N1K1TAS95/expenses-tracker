@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/nav/Navbar'
 import getUser from '@/composables/getUser'
 import {watch} from 'vue'
 import {useRouter} from 'vue-router'
-import NewEntry from '@/components/NewEntry'
-import Entries from '@/components/Entries'
+import NewEntry from '@/components/entries/NewEntry'
+import Entries from '@/components/entries/Entries'
 import {useI18n} from 'vue-i18n'
 
 export default {

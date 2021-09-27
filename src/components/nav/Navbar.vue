@@ -32,7 +32,7 @@ import useLogout from '@/composables/useLogout'
 import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
 import {useI18n} from 'vue-i18n'
-import LanguageSelect from '@/components/LanguageSelect'
+import LanguageSelect from '@/components/nav/LanguageSelect'
 
 export default {
     name: 'Navbar',

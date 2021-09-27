@@ -1,7 +1,7 @@
 import {ref} from 'vue'
 import {projectFirestore} from '@/firebase/config'
 
-const getCollection = (userID, collection) => {
+const getCollectionContinuous = (userID, collection) => {
     const documents = ref(null)
     const error = ref(null)
     let collectionRef = projectFirestore.collection('users').doc(userID).collection(collection)
@@ -29,4 +29,4 @@ const getCollection = (userID, collection) => {
     return {error, documents}
 }
 
-export default getCollection
+export default getCollectionContinuous

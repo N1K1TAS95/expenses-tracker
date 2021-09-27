@@ -49,9 +49,9 @@
 <script>
 import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
-import getCollection from '@/composables/getCollection'
+import getCollectionContinuous from '@/composables/getCollectionContinuous'
 import {ref} from 'vue'
-import NewEntry from '@/components/NewEntry'
+import NewEntry from '@/components/entries/NewEntry'
 import {Collapse} from 'bootstrap'
 import {useI18n} from 'vue-i18n'
 
@@ -62,7 +62,7 @@ export default {
         const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
-        const {error, documents} = getCollection(user.value.uid, 'entries')
+        const {error, documents} = getCollectionContinuous(user.value.uid, 'entries')
 
         if (error.value) {
             toast.error(error.value)

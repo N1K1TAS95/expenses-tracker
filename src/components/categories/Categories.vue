@@ -42,12 +42,12 @@
 import {useI18n} from 'vue-i18n'
 import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
-import getCollection from '@/composables/getCollection'
-import NewEntry from '@/components/NewEntry'
-import NewCategory from '@/components/NewCategory'
+import getCollectionContinuous from '@/composables/getCollectionContinuous'
+import NewEntry from '@/components/entries/NewEntry'
+import NewCategory from '@/components/categories/NewCategory'
 import {ref} from 'vue'
 import {Collapse} from 'bootstrap'
-import DeleteCategory from '@/components/DeleteCategory'
+import DeleteCategory from '@/components/categories/DeleteCategory'
 
 export default {
     name: 'Categories',
@@ -57,7 +57,7 @@ export default {
         const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
-        const {error, documents} = getCollection(user.value.uid, 'categories')
+        const {error, documents} = getCollectionContinuous(user.value.uid, 'categories')
 
         if (error.value) {
             toast.error(error.value)

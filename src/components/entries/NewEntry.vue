@@ -65,7 +65,7 @@ import {timestamp} from '@/firebase/config'
 import {useToast} from 'vue-toastification'
 import Dashboard from '@/views/Dashboard'
 import {useI18n} from 'vue-i18n'
-import Categories from '@/components/Categories'
+import Categories from '@/components/categories/Categories'
 
 export default {
     name: 'NewEntry',
