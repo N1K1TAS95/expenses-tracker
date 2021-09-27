@@ -1,5 +1,5 @@
 <template>
-    <div :class="['card-body', {'border-bottom' : index !== size - 1}]">
+    <div :class="['card-body', {'border-bottom' : index !== size - 1}]" @click="toggleEdit">
         <div class="row align-items-center">
             <div class="col-lg-2">
                 <div class="badge bg-primary">
@@ -21,11 +21,6 @@
                     {{ entry.amount.toLocaleString('it', {style: 'currency', currency: 'EUR'}) }}
                 </div>
             </div>
-            <div class="col-lg-2 text-end">
-                <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" :href="'#edit_entry_' + entry.id">
-                    Edit
-                </button>
-            </div>
         </div>
         <div class="collapse" :id="'edit_entry_' + entry.id">
             <EditEntry/>
@@ -36,6 +31,7 @@
 <script>
 import EditEntry from '@/components/entries/EditEntry'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
+import {Collapse} from 'bootstrap'
 
 export default {
     name: 'Entry',
@@ -55,6 +51,11 @@ export default {
         }
     },
     setup(props) {
+        const toggleEdit = () => {
+            const editCollapse = new Collapse(document.getElementById('edit_entry_' + props.entry.id), {})
+            editCollapse.hide()
+        }
+        return {toggleEdit}
     }
 }
 </script>
