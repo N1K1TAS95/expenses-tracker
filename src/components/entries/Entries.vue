@@ -19,32 +19,7 @@
         <div class="collapse" id="add_new_entry_collapse">
             <NewEntry @added_new_entry="hideAddEntry"/>
         </div>
-        <div :class="['card-body', {'border-bottom' : index !== documents.length - 1}]"
-             v-for="(doc, index) in documents" :key="doc.id"
-        >
-            <div class="row align-items-center">
-                <div class="col-lg-2">
-                    <div class="badge bg-primary">
-                        {{ new Date(doc.date).toLocaleDateString() }}
-                    </div>
-                </div>
-                <div class="col-lg-3 mt-2 mt-lg-0">
-                    <Suspense>
-                        <CategoryDisplay :category="doc.category" class="p-0"/>
-                    </Suspense>
-                </div>
-                <div class="col-lg mt-2 mt-lg-0">
-                    {{ doc.description }}
-                </div>
-                <div class="col-lg-2 mt-2 mt-lg-0 text-end">
-                    <div :class="['badge', {'bg-success' : doc.type === 'ENTRY'}, {'bg-danger' : doc.type === 'EXIT'}]">
-                        <span v-if="doc.type === 'ENTRY'">+</span>
-                        <span v-else>-</span>
-                        {{ doc.amount.toLocaleString('it', {style: 'currency', currency: 'EUR'}) }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Entry v-for="(doc, index) in documents" :key="doc.id" :entry="doc" :index="index" :size="documents.length"/>
     </div>
 </template>
 
@@ -57,10 +32,12 @@ import NewEntry from '@/components/entries/NewEntry'
 import {Collapse} from 'bootstrap'
 import {useI18n} from 'vue-i18n'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
+import EditEntry from '@/components/entries/EditEntry'
+import Entry from '@/components/entries/Entry'
 
 export default {
     name: 'Entries',
-    components: {CategoryDisplay, NewEntry},
+    components: {Entry, EditEntry, CategoryDisplay, NewEntry},
     setup() {
         const {t} = useI18n()
         const toast = useToast()
@@ -85,7 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.badge {
-    font-size: 16px;
-}
+
 </style>
