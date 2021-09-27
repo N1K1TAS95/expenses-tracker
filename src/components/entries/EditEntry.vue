@@ -135,7 +135,6 @@ export default {
         const {error, isLoading, setDoc} = useCollection(user.value.uid, 'entries')
         const saveEntry = async () => {
             if (checkData()) {
-                console.log('saving')
                 entryEdit.value.createdAt = timestamp()
                 await setDoc(entryEdit.value)
                 if (!error.value) {
