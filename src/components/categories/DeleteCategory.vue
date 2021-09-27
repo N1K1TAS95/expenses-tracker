@@ -1,6 +1,6 @@
 <template>
-    <div class="badge rounded-pill bg-danger p-1" @click="deleteCategory">
-        <i class="bi bi-x text-white" style="font-size: 15px"/>
+    <div class="bg-danger badge p-0" @click="deleteCategory">
+        <i class="bi bi-x text-white" style="font-size: 20px"/>
     </div>
 </template>
 

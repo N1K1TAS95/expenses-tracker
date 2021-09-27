@@ -17,19 +17,21 @@
             </div>
         </div>
         <div class="collapse" id="add_new_entry_collapse">
-            <NewEntry @added_new_entry="hideAddEntry" />
+            <NewEntry @added_new_entry="hideAddEntry"/>
         </div>
         <div :class="['card-body', {'border-bottom' : index !== documents.length - 1}]"
              v-for="(doc, index) in documents" :key="doc.id"
         >
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-2">
                     <div class="badge bg-primary">
                         {{ new Date(doc.date).toLocaleDateString() }}
                     </div>
                 </div>
                 <div class="col-lg-3 mt-2 mt-lg-0">
-                    {{ doc.category }}
+                    <Suspense>
+                        <CategoryDisplay :category="doc.category" class="p-0"/>
+                    </Suspense>
                 </div>
                 <div class="col-lg mt-2 mt-lg-0">
                     {{ doc.description }}
@@ -54,10 +56,11 @@ import {ref} from 'vue'
 import NewEntry from '@/components/entries/NewEntry'
 import {Collapse} from 'bootstrap'
 import {useI18n} from 'vue-i18n'
+import CategoryDisplay from '@/components/categories/CategoryDisplay'
 
 export default {
     name: 'Entries',
-    components: {NewEntry},
+    components: {CategoryDisplay, NewEntry},
     setup() {
         const {t} = useI18n()
         const toast = useToast()

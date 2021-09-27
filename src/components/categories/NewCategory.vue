@@ -69,10 +69,6 @@ export default {
                 ret = false
                 errors.value.name = t('empty')
             }
-            if (!new_category.value.icon_class) {
-                ret = false
-                errors.value.icon_class = t('empty')
-            }
             return ret
         }
         const addCategory = () => {

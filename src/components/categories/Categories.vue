@@ -10,7 +10,7 @@
                                         :category-i-d="category.id" @category_deleted="removedCategory"/>
                         <div
                             :class="['card-body', 'text-center', 'text-truncate', {'bg-primary rounded-1 border-0' : selectedCategory === category.id}]">
-                            <i :class="category.icon_class" style="font-size: 25px"></i>
+                            <i :class="[category.icon_class ? category.icon_class : 'bi bi-cash']" style="font-size: 25px"></i>
                             <br>
                             <span style="font-size: 12px">{{ category.name }}</span>
                         </div>
