@@ -1,6 +1,6 @@
 <template>
-    <div :class="['card-body', {'border-bottom' : index !== size - 1}]" @click="toggleEdit">
-        <div class="row align-items-center">
+    <div :class="['card-body', {'border-bottom' : index !== size - 1}]">
+        <div class="row align-items-center" @click="toggleEdit">
             <div class="col-lg-2">
                 <div class="badge bg-primary">
                     {{ new Date(entry.date).toLocaleDateString() }}
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="collapse" :id="'edit_entry_' + entry.id">
-            <EditEntry/>
+            <EditEntry :entry="entry" @saved_entry="savedEntry"/>
         </div>
     </div>
 </template>
@@ -32,6 +32,8 @@
 import EditEntry from '@/components/entries/EditEntry'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
 import {Collapse} from 'bootstrap'
+import {useToast} from 'vue-toastification'
+import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'Entry',
@@ -50,12 +52,15 @@ export default {
             required: true
         }
     },
-    setup(props) {
+    setup(props, context) {
         const toggleEdit = () => {
             const editCollapse = new Collapse(document.getElementById('edit_entry_' + props.entry.id), {})
             editCollapse.hide()
         }
-        return {toggleEdit}
+        const savedEntry = () => {
+            context.emit('saved_entry')
+        }
+        return {toggleEdit, savedEntry}
     }
 }
 </script>

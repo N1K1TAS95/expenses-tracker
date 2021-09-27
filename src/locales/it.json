@@ -30,5 +30,8 @@
   "select_category": "Per favore, selezionare una categoria.",
   "error_less_or_equal_zero": "Deve essere maggiore di 0.00",
   "dashboard": "Dashboard",
-  "category_is_used": "Categoria in uso!"
+  "category_is_used": "Categoria in uso!",
+  "save": "Salva",
+  "saved": "Saved",
+  "delete_entry": "Elimina Movimento"
 }

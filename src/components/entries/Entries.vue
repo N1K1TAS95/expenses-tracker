@@ -19,7 +19,8 @@
         <div class="collapse" id="add_new_entry_collapse">
             <NewEntry @added_new_entry="hideAddEntry"/>
         </div>
-        <Entry v-for="(doc, index) in documents" :key="doc.id" :entry="doc" :index="index" :size="documents.length"/>
+        <Entry v-for="(doc, index) in documents" :key="doc.id" :entry="doc" :index="index" :size="documents.length"
+               @saved_entry="savedEntry"/>
     </div>
 </template>
 
@@ -56,7 +57,11 @@ export default {
             add.value = false
         }
 
-        return {error, documents, add, hideAddEntry, t}
+        const savedEntry = () => {
+            toast.success(t('saved'))
+        }
+
+        return {error, documents, add, hideAddEntry, t, savedEntry}
     }
 }
 </script>
