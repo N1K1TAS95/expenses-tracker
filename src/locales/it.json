@@ -35,5 +35,7 @@
   "saved": "Saved",
   "added": "Added",
   "delete_entry": "Elimina Movimento",
-  "deleted_entry": "Movement deleted!"
+  "deleted_entry": "Movement deleted!",
+  "are_you_sure": "Sei sicuro?",
+  "yes": "Si"
 }

@@ -35,5 +35,7 @@
   "saved": "Saved",
   "added": "Added",
   "delete_entry": "Delete Movement",
-  "deleted_entry": "Movement deleted!"
+  "deleted_entry": "Movement deleted!",
+  "are_you_sure": "Are you sure?",
+  "yes": "Yes"
 }
