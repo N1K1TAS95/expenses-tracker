@@ -130,14 +130,11 @@ export default {
                 await addDoc(entry)
                 if (!error.value) {
                     resetErrors()
-                    toast.success('New Entry added successfully!')
                     context.emit('added_new_entry')
                     category.value = ''
                     description.value = ''
                     date.value = today
                     amount.value = '0.0'
-                } else {
-                    toast.error(error.value)
                 }
             }
         }

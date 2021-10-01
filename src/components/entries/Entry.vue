@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="collapse" :id="'edit_entry_' + entry.id">
-            <EditEntry :entry="entry" @saved_entry="savedEntry"/>
+            <EditEntry :entry="entry"/>
         </div>
     </div>
 </template>
@@ -32,8 +32,6 @@
 import EditEntry from '@/components/entries/EditEntry'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
 import {Collapse} from 'bootstrap'
-import {useToast} from 'vue-toastification'
-import {useI18n} from 'vue-i18n'
 
 export default {
     name: 'Entry',
@@ -52,15 +50,12 @@ export default {
             required: true
         }
     },
-    setup(props, context) {
+    setup(props) {
         const toggleEdit = () => {
             const editCollapse = new Collapse(document.getElementById('edit_entry_' + props.entry.id), {})
             editCollapse.hide()
         }
-        const savedEntry = () => {
-            context.emit('saved_entry')
-        }
-        return {toggleEdit, savedEntry}
+        return {toggleEdit}
     }
 }
 </script>

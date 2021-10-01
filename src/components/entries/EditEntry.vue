@@ -83,9 +83,8 @@ export default {
             required: true
         }
     },
-    setup(props, context) {
+    setup(props) {
         const {t} = useI18n()
-        const {toast} = useToast()
         const {user} = getUser()
         const entryEdit = ref({
             id: props.entry.id,
@@ -136,9 +135,6 @@ export default {
                 await setDoc(entryEdit.value)
                 if (!error.value) {
                     resetErrors()
-                    context.emit('saved_entry')
-                } else {
-                    toast.error(error.value)
                 }
             }
         }

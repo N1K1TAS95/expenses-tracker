@@ -22,16 +22,10 @@ export default {
     },
     setup(props) {
         const {t} = useI18n()
-        const toast = useToast()
         const {user} = getUser()
-        const {error, isLoading, deleteDoc} = useCollection(user.value.uid, 'entries')
+        const {isLoading, deleteDoc} = useCollection(user.value.uid, 'entries')
         const deleteEntry = async () => {
             await deleteDoc(props.entryID)
-            if (!error.value) {
-                toast.success(t('deleted_entry'))
-            } else {
-                toast.error(t('error'))
-            }
         }
         return {t, isLoading, deleteEntry}
     }
