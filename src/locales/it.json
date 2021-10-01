@@ -32,10 +32,12 @@
   "dashboard": "Dashboard",
   "category_is_used": "Categoria in uso!",
   "save": "Salva",
-  "saved": "Saved",
-  "added": "Added",
+  "saved": "Salvato",
+  "added": "Aggiunto",
+  "deleted": "Eliminato",
   "delete_entry": "Elimina Movimento",
-  "deleted_entry": "Movement deleted!",
+  "deleted_entry": "Movimento eliminato!",
   "are_you_sure": "Sei sicuro?",
-  "yes": "Si"
+  "yes": "Si",
+  "no_entries": "Nessun Movimento"
 }

@@ -34,8 +34,10 @@
   "save": "Save",
   "saved": "Saved",
   "added": "Added",
+  "deleted": "Eliminato",
   "delete_entry": "Delete Movement",
   "deleted_entry": "Movement deleted!",
   "are_you_sure": "Are you sure?",
-  "yes": "Yes"
+  "yes": "Yes",
+  "no_entries": "No Movements"
 }

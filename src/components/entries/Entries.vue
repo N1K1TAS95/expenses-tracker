@@ -21,6 +21,9 @@
         </div>
         <Entry v-for="(doc, index) in documents" :key="doc.id" :entry="doc" :index="index" :size="documents.length"
                @saved_entry="savedEntry"/>
+        <div class="card-body text-center" v-if="!documents || !documents.length">
+            {{ t('no_entries') }}
+        </div>
     </div>
 </template>
 
