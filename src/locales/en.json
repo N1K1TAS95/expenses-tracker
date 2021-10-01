@@ -33,5 +33,6 @@
   "category_is_used": "Category is used!",
   "save": "Save",
   "saved": "Saved",
-  "delete_entry": "Delete Movement"
+  "delete_entry": "Delete Movement",
+  "deleted_entry": "Movement deleted!"
 }

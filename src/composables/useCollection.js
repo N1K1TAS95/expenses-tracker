@@ -28,7 +28,19 @@ const useCollection = (userID, collection) => {
             console.log(err.message)
         }
     }
-    return {error, isLoading, addDoc, setDoc}
+    const deleteDoc = async (docID) => {
+        error.value = null
+        isLoading.value = true
+        try {
+            await projectFirestore.collection('users').doc(userID).collection(collection).doc(docID).delete()
+            isLoading.value = false
+        } catch (err) {
+            isLoading.value = false
+            error.value = err.message
+            console.log(err.message)
+        }
+    }
+    return {error, isLoading, addDoc, setDoc, deleteDoc}
 }
 
 export default useCollection

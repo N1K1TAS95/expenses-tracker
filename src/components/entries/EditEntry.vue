@@ -57,11 +57,7 @@
         </div>
         <div class="row mt-2 gy-3">
             <div class="col-3 d-grid gap-2">
-                <button class="btn btn-outline-danger">
-                    <span class="spinner-border spinner-border-sm me-2" role="status" v-if="true"></span>
-                    <span v-if="false">{{ t('loading') }}...</span>
-                    <span v-else>{{ t('delete_entry') }}</span>
-                </button>
+                <DeleteEntry :entry-i-d="entry.id"/>
             </div>
         </div>
     </form>
@@ -76,10 +72,11 @@ import {useToast} from 'vue-toastification'
 import useCollection from '@/composables/useCollection'
 import {timestamp} from '@/firebase/config'
 import getCollectionSingle from '@/composables/getCollectionSingle'
+import DeleteEntry from '@/components/entries/DeleteEntry'
 
 export default {
     name: 'EditEntry',
-    components: {Dashboard},
+    components: {DeleteEntry, Dashboard},
     props: {
         entry: {
             type: Object,

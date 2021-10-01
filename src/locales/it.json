@@ -33,5 +33,6 @@
   "category_is_used": "Categoria in uso!",
   "save": "Salva",
   "saved": "Saved",
-  "delete_entry": "Elimina Movimento"
+  "delete_entry": "Elimina Movimento",
+  "deleted_entry": "Movement deleted!"
 }
