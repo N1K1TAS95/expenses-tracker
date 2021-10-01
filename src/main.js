@@ -15,7 +15,8 @@ import titleMixin from '@/mixins/titleMixin'
 const toast_options = {
     position: 'bottom-right',
     toastClassName: 'my-custom-toast-class',
-    pauseOnHover: true,
+    bodyClassName: 'my-custom-toast-class-body',
+    pauseOnHover: false,
     hideProgressBar: true
 }
 

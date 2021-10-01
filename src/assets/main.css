@@ -7,6 +7,7 @@ body {
 .Vue-Toastification__toast.my-custom-toast-class {
     background-color: #0d6efd;
     border-radius: .25rem;
+    margin-left: 10px;
 }
 
 .Vue-Toastification__toast--error.my-custom-toast-class {
