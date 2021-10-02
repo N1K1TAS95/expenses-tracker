@@ -19,9 +19,9 @@
         <div class="collapse" id="add_new_entry_collapse">
             <NewEntry @added_new_entry="hideAddEntry"/>
         </div>
-        <Entry v-for="(doc, index) in documents" :key="doc.id" :entry="doc" :index="index" :size="documents.length"
+        <Entry v-for="(entry, index) in entries" :key="entry.id" :entry="entry" :index="index" :size="entries.length"
                @saved_entry="savedEntry"/>
-        <div class="card-body text-center" v-if="!documents || !documents.length">
+        <div class="card-body text-center" v-if="!entries || !entries.length">
             {{ t('no_entries') }}
         </div>
     </div>
@@ -38,6 +38,7 @@ import {useI18n} from 'vue-i18n'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
 import EditEntry from '@/components/entries/EditEntry'
 import Entry from '@/components/entries/Entry'
+import getEntries from '@/composables/getEntries'
 
 export default {
     name: 'Entries',
@@ -46,7 +47,7 @@ export default {
         const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
-        const {error, documents} = getCollectionContinuous(user.value.uid, 'entries')
+        const {error, entries} = getEntries(user.value.uid)
 
         if (error.value) {
             toast.error(error.value)
@@ -64,7 +65,7 @@ export default {
             toast.success(t('saved'))
         }
 
-        return {error, documents, add, hideAddEntry, t, savedEntry}
+        return {error, entries, add, hideAddEntry, t, savedEntry}
     }
 }
 </script>

@@ -39,5 +39,6 @@
   "deleted_entry": "Movimento eliminato!",
   "are_you_sure": "Sei sicuro?",
   "yes": "Si",
-  "no_entries": "Nessun Movimento"
+  "no_entries": "Nessun Movimento",
+  "error": "Errore"
 }
