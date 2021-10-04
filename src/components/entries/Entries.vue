@@ -19,8 +19,11 @@
         <div class="collapse" id="add_new_entry_collapse">
             <NewEntry @added_new_entry="hideAddEntry"/>
         </div>
-        <Entry v-for="(entry, index) in entries" :key="entry.id" :entry="entry" :index="index" :size="entries.length"
-               @saved_entry="savedEntry"/>
+        <Entry v-for="(entry, index) in entries" :key="entry.id"
+               :entry="entry"
+               :index="index"
+               :size="entries.length"
+        />
         <div class="card-body text-center" v-if="!entries || !entries.length">
             {{ t('no_entries') }}
         </div>
@@ -28,9 +31,7 @@
 </template>
 
 <script>
-import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
-import getCollectionContinuous from '@/composables/getCollectionContinuous'
 import {ref} from 'vue'
 import NewEntry from '@/components/entries/NewEntry'
 import {Collapse} from 'bootstrap'
@@ -38,22 +39,24 @@ import {useI18n} from 'vue-i18n'
 import CategoryDisplay from '@/components/categories/CategoryDisplay'
 import EditEntry from '@/components/entries/EditEntry'
 import Entry from '@/components/entries/Entry'
-import getEntries from '@/composables/getEntries'
+import getCollection from '@/composables/getCollection'
 
 export default {
     name: 'Entries',
     components: {Entry, EditEntry, CategoryDisplay, NewEntry},
     setup() {
         const {t} = useI18n()
-        const toast = useToast()
         const {user} = getUser()
-        const {error, entries, subscribe, unsub} = getEntries(user.value.uid)
+        const {error, documents: entries, sub} = getCollection(
+            user.value.uid,
+            'entries',
+            {
+                date: 'desc',
+                createdAt: 'desc'
+            }
+        )
 
-        subscribe()
-
-        if (error.value) {
-            toast.error(error.value)
-        }
+        sub()
 
         const add = ref(false)
 
@@ -63,11 +66,7 @@ export default {
             add.value = false
         }
 
-        const savedEntry = () => {
-            toast.success(t('saved'))
-        }
-
-        return {error, entries, add, hideAddEntry, t, savedEntry}
+        return {error, entries, add, hideAddEntry, t}
     }
 }
 </script>

@@ -68,11 +68,10 @@ import Dashboard from '@/views/Dashboard'
 import {ref} from 'vue'
 import {useI18n} from 'vue-i18n'
 import getUser from '@/composables/getUser'
-import {useToast} from 'vue-toastification'
 import useCollection from '@/composables/useCollection'
 import {timestamp} from '@/firebase/config'
-import getCollectionSingle from '@/composables/getCollectionSingle'
 import DeleteEntry from '@/components/entries/DeleteEntry'
+import getCollection from '@/composables/getCollection'
 
 export default {
     name: 'EditEntry',
@@ -96,8 +95,8 @@ export default {
             description: props.entry.description,
             amount: props.entry.amount
         })
-        const {documents: categories, loadDocuments} = getCollectionSingle(user.value.uid)
-        loadDocuments('categories')
+        const {documents: categories, get} = getCollection(user.value.uid, 'categories')
+        get()
         const errors = ref({
             date: '',
             category: '',

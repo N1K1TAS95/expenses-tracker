@@ -8,8 +8,8 @@
 import getUser from '@/composables/getUser'
 import {useI18n} from 'vue-i18n'
 import {useToast} from 'vue-toastification'
-import getCollectionSingle from '@/composables/getCollectionSingle'
 import useCollection from '@/composables/useCollection'
+import getCollection from '@/composables/getCollection'
 
 export default {
     name: 'DeleteCategory',
@@ -22,8 +22,8 @@ export default {
         const {user} = getUser()
         const {error, deleteDoc} = useCollection(user.value.uid, 'categories')
         const checkUsage = async (id) => {
-            const {error, documents, loadDocuments} = getCollectionSingle(user.value.uid)
-            await loadDocuments('entries')
+            const {error, documents, get} = getCollection(user.value.uid, 'entries')
+            await get()
             if (!error.value) {
                 return documents.value.some(el => el.category === id)
             }

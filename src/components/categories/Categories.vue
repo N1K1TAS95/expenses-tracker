@@ -10,7 +10,8 @@
                                         :category-i-d="category.id" @category_deleted="removedCategory"/>
                         <div
                             :class="['card-body', 'text-center', 'text-truncate', {'bg-primary rounded-1 border-0' : selectedCategory === category.id}]">
-                            <i :class="[category.icon_class ? category.icon_class : 'bi bi-cash']" style="font-size: 25px"></i>
+                            <i :class="[category.icon_class ? category.icon_class : 'bi bi-cash']"
+                               style="font-size: 25px"></i>
                             <br>
                             <span style="font-size: 12px">{{ category.name }}</span>
                         </div>
@@ -40,14 +41,13 @@
 
 <script>
 import {useI18n} from 'vue-i18n'
-import {useToast} from 'vue-toastification'
 import getUser from '@/composables/getUser'
-import getCollectionContinuous from '@/composables/getCollectionContinuous'
 import NewEntry from '@/components/entries/NewEntry'
 import NewCategory from '@/components/categories/NewCategory'
 import {ref} from 'vue'
 import {Collapse} from 'bootstrap'
 import DeleteCategory from '@/components/categories/DeleteCategory'
+import getCollection from '@/composables/getCollection'
 
 export default {
     name: 'Categories',
@@ -55,13 +55,10 @@ export default {
     emits: ['selected_category'],
     setup(props, context) {
         const {t} = useI18n()
-        const toast = useToast()
         const {user} = getUser()
-        const {error, documents} = getCollectionContinuous(user.value.uid, 'categories')
+        const {documents, sub} = getCollection(user.value.uid, 'categories', {name: 'asc'})
 
-        if (error.value) {
-            toast.error(error.value)
-        }
+        sub()
 
         const add = ref(false)
 
@@ -85,7 +82,7 @@ export default {
             }
         }
 
-        return {error, documents, t, add, hideAddCategory, selectedCategory, selectCategory, removedCategory}
+        return {documents, t, add, hideAddCategory, selectedCategory, selectCategory, removedCategory}
     }
 }
 </script>
