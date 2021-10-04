@@ -1,5 +1,5 @@
 <template>
-    <div class="spinner-border spinner-border-sm my-auto" v-if="isLoading"/>
+    <div class="spinner-border spinner-border-sm my-auto" v-if="loading"/>
     <div class="d-inline-flex align-items-center" v-else>
         <i :class="[document.icon_class ? document.icon_class : 'bi bi-cash', 'me-2']" style="font-size: 25px"></i>
         <span>{{ document.name }}</span>
@@ -20,11 +20,11 @@ export default {
     },
     async setup(props) {
         const {user} = getUser()
-        const {error, isLoading, document, loadDocument} = getDocument(user.value.uid)
-        await loadDocument('categories', props.category)
+        const {error, loading, document, get} = getDocument(user.value.uid)
+        await get('categories', props.category)
         return {
             error,
-            isLoading,
+            loading,
             document
         }
     }

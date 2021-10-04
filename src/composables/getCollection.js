@@ -1,10 +1,12 @@
-import {ref} from 'vue'
+import {ref, readonly} from 'vue'
 import {projectFirestore} from '@/firebase/config'
 import {useToast} from 'vue-toastification'
 import i18n from '@/i18n'
 
+const {t} = i18n.global
+const {toast} = useToast()
+
 const getCollection = (userID, collection, ordering = null) => {
-    const toast = useToast()
     const error = ref(null)
     const documents = ref(null)
     const loading = ref(false)
@@ -29,7 +31,7 @@ const getCollection = (userID, collection, ordering = null) => {
                 loading.value = false
             },
             (err) => {
-                toast.error(i18n.tc('error'))
+                toast.error(t('error'))
                 loading.value = false
                 documents.value = null
                 error.value = err.message
@@ -56,13 +58,13 @@ const getCollection = (userID, collection, ordering = null) => {
             error.value = null
             loading.value = false
         } catch (err) {
-            toast.error(i18n.tc('error'))
+            toast.error(t('error'))
             loading.value = false
             documents.value = null
             error.value = err.message
         }
     }
-    return {error, loading, documents, sub, unsub, get}
+    return {error, loading: readonly(loading), documents: readonly(documents), sub, unsub, get}
 }
 
 export default getCollection
