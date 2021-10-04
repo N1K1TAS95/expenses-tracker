@@ -40,5 +40,10 @@
   "are_you_sure": "Are you sure?",
   "yes": "Yes",
   "no_entries": "No Movements",
-  "error": "Error"
+  "error": "Error",
+  "upload_csv": "Upload CSV",
+  "csv_file": "CSV File",
+  "csv_format_error": "Please select an CSV file.",
+  "csv_only_files": "Only CSV files are allowed, utf-8 and ; separated.",
+  "upload": "Upload"
 }

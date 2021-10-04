@@ -14,10 +14,22 @@
                     <span v-if="add">{{ t('cancel') }}</span>
                     <span v-else>{{ t('add') }}</span>
                 </a>
+                <a :class="['btn', {'btn-success': !csv}, {'btn-danger': csv}]"
+                   data-bs-toggle="collapse"
+                   role="button"
+                   href="#upload_csv_collapse"
+                   @click="csv = !csv"
+                >
+                    <i class="bi bi-x-circle" v-if="csv"></i>
+                    <i class="bi bi-file-earmark-arrow-up" v-else></i>
+                </a>
             </div>
         </div>
         <div class="collapse" id="add_new_entry_collapse">
             <NewEntry @added_new_entry="hideAddEntry"/>
+        </div>
+        <div class="collapse" id="upload_csv_collapse">
+            <UploadCsv />
         </div>
         <Entry v-for="(entry, index) in entries" :key="entry.id"
                :entry="entry"
@@ -40,10 +52,11 @@ import CategoryDisplay from '@/components/categories/CategoryDisplay'
 import EditEntry from '@/components/entries/EditEntry'
 import Entry from '@/components/entries/Entry'
 import getCollection from '@/composables/getCollection'
+import UploadCsv from '@/components/entries/UploadCsv'
 
 export default {
     name: 'Entries',
-    components: {Entry, EditEntry, CategoryDisplay, NewEntry},
+    components: {UploadCsv, Entry, EditEntry, CategoryDisplay, NewEntry},
     setup() {
         const {t} = useI18n()
         const {user} = getUser()
@@ -59,6 +72,7 @@ export default {
         sub()
 
         const add = ref(false)
+        const csv = ref(false)
 
         const hideAddEntry = () => {
             const addCollapse = new Collapse(document.getElementById('add_new_entry_collapse'), {})
@@ -66,7 +80,13 @@ export default {
             add.value = false
         }
 
-        return {error, entries, add, hideAddEntry, t}
+        const hideUploadCsv = () => {
+            const uploadCsvCollapse = new Collapse(document.getElementById('upload_csv_collapse'), {})
+            uploadCsvCollapse.hide()
+            csv.value = false
+        }
+
+        return {t, error, entries, add, hideAddEntry, csv, hideUploadCsv}
     }
 }
 </script>
