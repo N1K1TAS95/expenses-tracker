@@ -47,7 +47,9 @@ export default {
         const {t} = useI18n()
         const toast = useToast()
         const {user} = getUser()
-        const {error, entries} = getEntries(user.value.uid)
+        const {error, entries, subscribe, unsub} = getEntries(user.value.uid)
+
+        subscribe()
 
         if (error.value) {
             toast.error(error.value)

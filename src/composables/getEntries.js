@@ -14,21 +14,29 @@ const getEntries = (userID) => {
         .collection('entries')
         .orderBy('date', 'desc')
         .orderBy('createdAt', 'desc')
-    entriesRef.onSnapshot((snap) => {
-            let results = []
-            snap.docs.forEach(doc => {
-                doc.data().createdAt && results.push({...doc.data(), id: doc.id})
+    const subscribe = () => {
+        return entriesRef.onSnapshot((snap) => {
+                let results = []
+                snap.docs.forEach(doc => {
+                    doc.data().createdAt && results.push({...doc.data(), id: doc.id})
+                })
+                entries.value = results
+                error.value = null
+            },
+            (err) => {
+                toast.error(t('error'))
+                entries.value = null
+                error.value = err.message
+                console.log(err)
             })
-            entries.value = results
-            error.value = null
-        },
-        (err) => {
-            toast.error(t('error'))
-            entries.value = null
-            error.value = err.message
-            console.log(err)
-        })
-    return {error, entries}
+    }
+    let subscription = subscribe()
+    const unsub = () => {
+        if (subscription) {
+            subscription()
+        }
+    }
+    return {error, entries, subscribe, unsub}
 }
 
 export default getEntries
