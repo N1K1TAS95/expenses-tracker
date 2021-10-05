@@ -11,7 +11,6 @@ import store from './store'
 import '@/assets/main.css'
 import titleMixin from '@/mixins/titleMixin'
 
-
 const toast_options = {
     position: 'bottom-right',
     toastClassName: 'my-custom-toast-class',
