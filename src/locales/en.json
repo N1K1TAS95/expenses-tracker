@@ -34,7 +34,7 @@
   "save": "Save",
   "saved": "Saved",
   "added": "Added",
-  "deleted": "Eliminato",
+  "deleted": "Deleted",
   "delete_entry": "Delete Movement",
   "deleted_entry": "Movement deleted!",
   "are_you_sure": "Are you sure?",
@@ -44,6 +44,7 @@
   "upload_csv": "Upload CSV",
   "csv_file": "CSV File",
   "csv_format_error": "Please select an CSV file.",
-  "csv_only_files": "Only CSV files are allowed, utf-8 and ; separated.",
-  "upload": "Upload"
+  "csv_only_files": "Only CSV files are allowed.",
+  "upload": "Upload",
+  "csv_uploaded": "CSV uploaded successfully!"
 }

@@ -44,6 +44,7 @@
   "upload_csv": "Upload CSV",
   "csv_file": "File CSV",
   "csv_format_error": "Per favore selezionare file CSV.",
-  "csv_only_files": "Solo file CSV sono permessi, utf-8 e separati da ;",
-  "upload": "Carica"
+  "csv_only_files": "Solo file CSV sono permessi.",
+  "upload": "Carica",
+  "csv_uploaded": "CSV caricato con successo!"
 }

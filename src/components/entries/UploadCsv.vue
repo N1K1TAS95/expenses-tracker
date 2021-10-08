@@ -27,20 +27,23 @@
 </template>
 
 <script>
-import {ref, watch} from 'vue'
+import {ref} from 'vue'
 import {useI18n} from 'vue-i18n'
 import {useToast} from 'vue-toastification'
 import * as Papa from 'papaparse'
+import useEntries from '@/composables/useEntries'
+import getUser from '@/composables/getUser'
 
 export default {
     name: 'UploadCsv',
-    setup(props, context) {
+    setup() {
         const {t} = useI18n()
         const toast = useToast()
         const loading = ref(false)
         const file = ref(null)
         const fileError = ref(null)
         const types = ['text/csv']
+        const {user} = getUser()
         const handleFileChange = (e) => {
             const selected = e.target.files[0]
             console.log(selected)
@@ -59,9 +62,12 @@ export default {
                 Papa.parse(file.value, {
                     header: true,
                     worker: true,
-                    complete: (results, file) => {
+                    complete: async (results, file) => {
                         loading.value = false
                         console.log(results)
+                        const {uploadBulk} = useEntries(user.value.uid)
+                        await uploadBulk(results.data)
+                        toast.success(t('csv_uploaded'))
                     },
                     error: (error, file) => {
                         loading.value = false

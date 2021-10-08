@@ -4,13 +4,13 @@ import {useToast} from 'vue-toastification'
 import i18n from '@/i18n'
 
 const {t} = i18n.global
-const {toast} = useToast()
 
 const useCollection = (userID, collection) => {
     const error = ref(null)
     const loading = ref(false)
+    const {toast} = useToast()
     const handleError = (err) => {
-        toast.error(t('error'))
+        //toast.error(t('error')) TODO da risolvere il problema con undefined
         loading.value = false
         error.value = err.message
         console.log(err.message)
