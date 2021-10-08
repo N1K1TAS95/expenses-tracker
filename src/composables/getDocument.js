@@ -4,7 +4,7 @@ import i18n from '@/i18n'
 import {useToast} from 'vue-toastification'
 
 const {t} = i18n.global
-const {toast} = useToast()
+const toast = useToast()
 
 const getDocument = (userID) => {
     const error = ref(null)

@@ -4,7 +4,7 @@ import {useToast} from 'vue-toastification'
 import i18n from '@/i18n'
 
 const {t} = i18n.global
-const {toast} = useToast()
+const toast = useToast()
 
 const getCollection = (userID, collection, ordering = null) => {
     const error = ref(null)

@@ -1,13 +1,12 @@
 import {ref, readonly} from 'vue'
 import {useToast} from 'vue-toastification'
 import i18n from '@/i18n'
-import useCollection from '@/composables/useCollection'
 import {timestamp} from '@/firebase/config'
 import {projectFirestore} from '@/firebase/config'
 import getCollection from '@/composables/getCollection'
 
 const {t} = i18n.global
-const {toast} = useToast()
+const toast = useToast()
 
 const useEntries = (userID) => {
     const error = ref(null)
